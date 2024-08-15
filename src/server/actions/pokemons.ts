@@ -3,7 +3,7 @@ import configuration from "@/server/configuration";
 import { IPokemon } from "@/interfaces/IPokemon";
 import { encrypt, decrypt } from "@/utils/crypto";
 
-export async function getPokemonEncript({
+export async function getPokemonEncrypt({
   pokemonName,
 }: {
   pokemonName: string;

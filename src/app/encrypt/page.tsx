@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import Header from "@/components/Header";
-import { getPokemon } from "@/server/actions/pokemons";
+import { getPokemonEncrypt } from "@/server/actions/pokemons";
 import { encrypt, decrypt } from "@/utils/crypto";
 import { IPokemon } from "@/interfaces/IPokemon";
 import CardElement from "@/elements/CardElement";
-import { Button } from "components-library";
+import { Button } from "@/elements/ButtonElement";
 
 export default function Home() {
   const [pokemon, setPokemon] = useState<string>("");
@@ -20,16 +20,18 @@ export default function Home() {
     setLoading(true);
 
     try {
-      //const encrypted = await encrypt(pokemon, ENCRYPTION_KEY);
-      const data = await getPokemon({ pokemonName: pokemon });
-      // const decryptedResponse = await decrypt(
-      //   encryptedResponse,
-      //   ENCRYPTION_KEY
-      // );
+      const encrypted = await encrypt(pokemon, ENCRYPTION_KEY);
+      const encryptedResponse = await getPokemonEncrypt({
+        pokemonName: encrypted,
+      });
+      const decryptedResponse = await decrypt(
+        encryptedResponse,
+        ENCRYPTION_KEY
+      );
 
-      //const pokemonData = JSON.parse(decryptedResponse);
-      //console.log(pokemonData);
-      setPokemonData(data);
+      const pokemonData = JSON.parse(decryptedResponse);
+      console.log(pokemonData);
+      setPokemonData(pokemonData);
       setLoading(false);
     } catch (error) {
       console.error("Error in handleSubmit:", error);
@@ -50,9 +52,7 @@ export default function Home() {
           value={pokemon}
           onChange={(e) => setPokemon(e.target.value.toLowerCase())}
         />
-        <Button color="primary" width="100%" textColor="white" type="submit">
-          Search
-        </Button>
+        <Button type="submit">Search</Button>
       </form>
       {loading && <p className="mt-[3rem]">Loading...</p>}
       {!loading && pokemonData !== null && (
