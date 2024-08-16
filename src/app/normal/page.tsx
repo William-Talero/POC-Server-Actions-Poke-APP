@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import Header from "@/components/Header";
-import { IPokemon } from "@/interfaces/IPokemon";
+import { Iuser } from "@/interfaces/IUser";
 import CardElement from "@/elements/CardElement";
 import { Button } from "@/elements/ButtonElement";
 import configuration from "@/server/configuration";
 
 export default function Home() {
-  const [pokemon, setPokemon] = useState<string>("");
-  const [pokemonData, setPokemonData] = useState<IPokemon | null>(null);
+  const [user, setuser] = useState<string>("");
+  const [userData, setuserData] = useState<Iuser | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -17,7 +17,7 @@ export default function Home() {
     setLoading(true);
 
     try {
-      let url = `${configuration.baseURL}/${configuration.paths.getPokemon}/${pokemon}`;
+      let url = `${configuration.baseURL}/${configuration.paths.getUserByName}/${user}`;
 
       const response = await fetch(url, {
         method: "GET",
@@ -30,10 +30,11 @@ export default function Home() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data: IPokemon = await response.json();
+      const data: Iuser = await response.json();
+
       console.log(data);
 
-      setPokemonData(data);
+      setuserData(data);
       setLoading(false);
     } catch (error) {
       console.error("Error in handleSubmit:", error);
@@ -44,24 +45,24 @@ export default function Home() {
   return (
     <main className="w-full flex min-h-svh flex-col items-center relative">
       <Header site="home" />
-      <p className="text-2xl my-[2rem]">Pokemon</p>
+      <p className="text-2xl my-[2rem]">user</p>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="pokemonName"
-          placeholder="Enter a Pokemon name"
+          name="userName"
+          placeholder="Enter a user name"
           className="border-2 border-gray-300 p-2 rounded-md w-full"
-          value={pokemon}
-          onChange={(e) => setPokemon(e.target.value.toLowerCase())}
+          value={user}
+          onChange={(e) => setuser(e.target.value.toLowerCase())}
         />
         <Button type="submit">Search</Button>
       </form>
       {loading && <p className="mt-[3rem]">Loading...</p>}
-      {!loading && pokemonData !== null && (
-        <CardElement pokemon={pokemonData} />
+      {!loading && userData !== null && (
+        <CardElement user={userData} />
       )}
-      {!loading && pokemonData === null && (
-        <h1 className="text-md text-center mt-[3rem]">No pokemon found</h1>
+      {!loading && userData === null && (
+        <h1 className="text-md text-center mt-[3rem]">No user found</h1>
       )}
     </main>
   );

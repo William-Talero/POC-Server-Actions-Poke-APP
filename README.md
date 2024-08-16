@@ -1,4 +1,4 @@
-# Proyecto POC-Server-Actions - Poke APP
+# Proyecto POC-Server-Actions - User APP
 
 ## Tecnologías Utilizadas
 
@@ -30,4 +30,4 @@ Abre http://localhost:3000 con tu navegador para ver el resultado.
 
 Este proyecto está licenciado bajo la Licencia MIT - ver el archivo LICENSE.md para más detalles.
 
-Proyecto POC-Server-Actions - Poke APP © 2024 por William Talero. Todos los derechos reservados.
+Proyecto POC-Server-Actions - User APP © 2024 por William Talero. Todos los derechos reservados.

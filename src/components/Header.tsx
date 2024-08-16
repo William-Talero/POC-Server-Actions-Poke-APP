@@ -30,7 +30,7 @@ const Header = ({ site }: { site: string }) => {
             className="font-bold text-inherit"
             onClick={() => router.push("/")}
           >
-            Poke APP
+            User APP
           </p>
         </NavbarBrand>
       </NavbarContent>
