@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Header from "@/components/Header";
 import { getuser } from "@/server/actions/users";
-import { encrypt, decrypt } from "@/utils/crypto";
 import { Iuser } from "@/interfaces/IUser";
 import CardElement from "@/elements/CardElement";
 import { Button } from "components-library";
@@ -12,24 +11,15 @@ export default function Home() {
   const [userData, setuserData] = useState<Iuser | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const ENCRYPTION_KEY = process.env.NEXT_PUBLIC_ENCRYPTION_KEY || "";
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setLoading(true);
 
     try {
-      //const encrypted = await encrypt(user, ENCRYPTION_KEY);
       const data = await getuser({ userName: user });
       console.log(data);
-      // const decryptedResponse = await decrypt(
-      //   encryptedResponse,
-      //   ENCRYPTION_KEY
-      // );
 
-      //const userData = JSON.parse(decryptedResponse);
-      //console.log(userData);
       setuserData(data);
       setLoading(false);
     } catch (error) {
@@ -56,9 +46,7 @@ export default function Home() {
         </Button>
       </form>
       {loading && <p className="mt-[3rem]">Loading...</p>}
-      {!loading && userData !== null && (
-        <CardElement user={userData} />
-      )}
+      {!loading && userData !== null && <CardElement user={userData} />}
       {!loading && userData === null && (
         <h1 className="text-md text-center mt-[3rem]">No user found</h1>
       )}

@@ -4,7 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "Poke - APP",
+  title: "User - APP",
   description: "Aplication to test Server Actions - NextJS",
 };
 

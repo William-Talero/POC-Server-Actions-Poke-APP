@@ -55,12 +55,12 @@ export default function Home() {
           value={user}
           onChange={(e) => setuser(e.target.value.toLowerCase())}
         />
-        <Button type="submit">Search</Button>
+        <Button $w="100%" $bgcolor="primary" type="submit">
+          Search
+        </Button>
       </form>
       {loading && <p className="mt-[3rem]">Loading...</p>}
-      {!loading && userData !== null && (
-        <CardElement user={userData} />
-      )}
+      {!loading && userData !== null && <CardElement user={userData} />}
       {!loading && userData === null && (
         <h1 className="text-md text-center mt-[3rem]">No user found</h1>
       )}
