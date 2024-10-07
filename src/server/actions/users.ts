@@ -16,6 +16,7 @@ export async function getuserEncrypt({
     userName = await decrypt(userName, ENCRYPTION_KEY);
     console.log(userName);
     let url = `${configuration.baseURL}/${configuration.paths.getUserByName}/${userName}`;
+    console.log(url);
 
     const response = await fetch(url, {
       method: "GET",
@@ -24,11 +25,14 @@ export async function getuserEncrypt({
       },
     });
 
+    console.log(response);
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
+    console.log(data);
     const userData: Iuser | null = validateUser(data);
 
     return encrypt(JSON.stringify(userData), ENCRYPTION_KEY);

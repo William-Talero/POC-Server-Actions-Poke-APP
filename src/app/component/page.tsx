@@ -6,7 +6,7 @@ import { Input, InputWithIcon } from "@/elements/InputElement";
 const page = () => {
   return (
     <>
-      <div className="w-full h-auto m-4 flex justify-center items-center text-center">
+      <div className="w-full h-auto my-4 flex justify-center items-center text-center">
         <p className="text-2xl">Botones</p>
       </div>
       <div className="w-full h-full flex-col md:flex-row flex justify-center items-center px-4">
@@ -64,7 +64,7 @@ const page = () => {
             $type="primary"
             $bgcolor="primary"
             $m=".6rem .3rem"
-            icon="plus"
+            $icon="plus"
             type="submit"
           >
             Search
@@ -74,7 +74,7 @@ const page = () => {
             $type="primary"
             $bgcolor="primary"
             $m=".6rem .3rem"
-            icon="plus"
+            $icon="plus"
             type="submit"
           >
             Search
@@ -84,7 +84,7 @@ const page = () => {
             $type="primary"
             $bgcolor="primary"
             $m=".6rem .3rem"
-            icon="plus"
+            $icon="plus"
             type="submit"
           >
             Search
@@ -94,7 +94,7 @@ const page = () => {
             $type="secondary"
             $bgcolor="primary"
             $m=".6rem .3rem"
-            icon="plus"
+            $icon="plus"
             type="submit"
           >
             Search
@@ -104,7 +104,7 @@ const page = () => {
             $type="secondary"
             $bgcolor="primary"
             $m=".6rem .3rem"
-            icon="plus"
+            $icon="plus"
             type="submit"
             disabled
           >
@@ -160,12 +160,13 @@ const page = () => {
           </OrangeButton>
         </div>
       </div>
-      <div className="w-full h-auto m-4 flex justify-center items-center text-center">
+      <div className="w-full h-auto my-4 flex justify-center items-center text-center">
         <p className="text-2xl">Inputs</p>
       </div>
       <div className="w-full h-full flex-col md:flex-row flex justify-center items-center px-4">
-        <Input placeholder="Estrada de texto" />
-        <InputWithIcon />
+        <Input placeholder="Estrada de texto" $m=".5rem" $title="Texto Input" $description="Texto de ayuda"/>
+        <InputWithIcon $icon="plus" placeholder="Entrada de texto con icono" $m=".5rem" $title="Texto Input" $description="Texto de ayuda"/>
+        <Input placeholder="Estrada de texto" $m=".5rem" $title="Texto Input" $description="Texto de ayuda"/>
       </div>
     </>
   );

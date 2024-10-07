@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import { getuser } from "@/server/actions/users";
 import { Iuser } from "@/interfaces/IUser";
 import CardElement from "@/elements/CardElement";
-import { Button } from "components-library";
+import { Button } from "@/elements/ButtonElement";
 
 export default function Home() {
   const [user, setuser] = useState<string>("");
@@ -41,7 +41,7 @@ export default function Home() {
           value={user}
           onChange={(e) => setuser(e.target.value.toLowerCase())}
         />
-        <Button color="primary" width="100%" textColor="white" type="submit">
+        <Button $type="primary" $size="md" type="submit">
           Search
         </Button>
       </form>

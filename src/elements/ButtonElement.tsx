@@ -16,7 +16,7 @@ interface ButtonProps {
 interface ButtonWithIconProps
   extends ButtonProps,
     React.ButtonHTMLAttributes<HTMLButtonElement> {
-  icon: "house" | "plus" | "master";
+  $icon: "house" | "plus" | "master";
   children: React.ReactNode;
 }
 
@@ -211,12 +211,12 @@ const OrangeButton = styled(Button)`
 `;
 
 const ButtonWithIcon = (data: ButtonWithIconProps) => {
-  const { $size, icon, children } = data;
+  const { $size, $icon: icon, children } = data;
   return (
     <Button {...data}>
-      <Icon name={icon} />
+      <Icon $name={icon} $w="20%" />
       <ButtonContent>{children}</ButtonContent>
-      {$size == "lg" && <Icon name={icon} />}
+      {$size == "lg" && <Icon $name={icon} $w="20%" />}
     </Button>
   );
 };
